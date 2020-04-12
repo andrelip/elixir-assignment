@@ -4,7 +4,7 @@ defmodule WeatherForecast do
   """
   @adapter Application.get_env(:weather_forecast, WeatherForecast)[:adapter]
 
-  def current_weather(lat, lon) do
-    @adapter.current_weather(lat, lon)
+  def get(lat, lon, cnt \\ 15) do
+    @adapter.get(lat, lon, cnt)
   end
 end

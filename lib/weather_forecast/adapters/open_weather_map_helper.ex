@@ -15,4 +15,12 @@ defmodule WeatherForecast.Adapters.OpenWeatherMapHelper do
   defp current_full_uri do
     @base_uri <> "/weather"
   end
+
+  def fetch_forecast_weather(config, lat, lon, ctn) do
+    HTTPHelper.get(forecast_full_uri(), lat: lat, lon: lon, ctn: ctn, appid: config.api_key)
+  end
+
+  defp forecast_full_uri do
+    @base_uri <> "/forecast/daily"
+  end
 end
