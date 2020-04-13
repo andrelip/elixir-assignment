@@ -5,6 +5,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMapHelper do
   """
 
   alias WeatherForecast.Adapters.HTTPHelper
+  alias WeatherForecast.Adapters.OpenWeatherMap.DailyMock
 
   @base_uri "https://api.openweathermap.org/data/2.5"
 
@@ -17,7 +18,13 @@ defmodule WeatherForecast.Adapters.OpenWeatherMapHelper do
   end
 
   def fetch_forecast_weather(config, lat, lon, ctn) do
-    HTTPHelper.get(forecast_full_uri(), lat: lat, lon: lon, ctn: ctn, appid: config.api_key)
+    case Application.get_env(:weather_forecast, WeatherForecast)[:mock_forecast] do
+      true ->
+        {:ok, DailyMock.example()}
+
+      false ->
+        HTTPHelper.get(forecast_full_uri(), lat: lat, lon: lon, ctn: ctn, appid: config.api_key)
+    end
   end
 
   defp forecast_full_uri do

@@ -5,8 +5,8 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   Requires an API key in the config.
   """
 
-  alias WeatherForecast.Adapters.OpenWeatherMapHelper
   alias WeatherForecast.Adapters.OpenWeatherMap.DailyParser
+  alias WeatherForecast.Adapters.OpenWeatherMapHelper
 
   def get(lat, lon, cnt) do
     current_task = Task.async(fn -> current_weather(lat, lon) end)
@@ -32,6 +32,13 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
     OpenWeatherMapHelper.fetch_forecast_weather(config(), lat, lon, cnt)
   end
 
+  defp date(current_weather) do
+    current_weather["dt"]
+    |> DateTime.from_unix!()
+    |> DateTime.to_date()
+    |> Date.to_iso8601()
+  end
+
   defp sunrise(current_weather) do
     get_in(current_weather, ["sys", "sunrise"])
   end
@@ -51,21 +58,22 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   defp weathers(current_weather) do
     current_weather
     |> Map.get("weather")
-    |> Enum.map(&do_weather/1)
+    |> Enum.map(&parse_weather/1)
   end
 
-  defp do_weather(weather) do
+  defp parse_weather(weather) do
     main = weather["main"]
-    weather = weather["description"]
+    description = weather["description"]
 
     %{
       main: main,
-      weather: weather
+      description: description
     }
   end
 
   def format(current_weather_data, daily_data) do
     %{
+      date: date(current_weather_data),
       sunrise: sunrise(current_weather_data),
       sunset: sunset(current_weather_data),
       temperature: temperature(current_weather_data),

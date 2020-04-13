@@ -57,6 +57,7 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 config :weather_forecast, WeatherForecast,
+  mock_forecast: true,
   api_key:
     System.get_env("OPENWEATHERMAP_APIKEY") ||
       raise("""
