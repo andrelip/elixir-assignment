@@ -9,4 +9,14 @@ config :assignment, AssignmentWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-config :weather_forecast, WeatherForecast, adapter: WeatherForecast.Adapters.Test
+config :weather_forecast, WeatherForecast,
+  adapter: WeatherForecast.Adapters.Test,
+  api_key:
+    System.get_env("OPENWEATHERMAP_APIKEY") ||
+      raise("""
+      environment variable OPENWEATHERMAP_APIKEY is missing.
+      You can generate one by accessing the following URL:
+      https://openweathermap.org/api
+
+      This key is required for refreshing the VCR Cache
+      """)

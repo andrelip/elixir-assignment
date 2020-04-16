@@ -3,7 +3,7 @@ defmodule Assignment.WeatherForecast do
   Pending
   """
 
-  def get(lat, lon, cnt \\ 15) do
-    WeatherForecast.get(lat, lon, cnt)
+  def get(lat, lon) do
+    WeatherForecast.get(lat, lon)
   end
 end

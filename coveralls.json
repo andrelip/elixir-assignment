@@ -1,0 +1,15 @@
+{
+  "skip_files": [
+    "test/support",
+    "lib/assignment_web/views/*",
+    "lib/assignment/application.ex",
+    "lib/assignment_web.ex",
+    "lib/assignment_web/router.ex",
+    "lib/assignment_web/gettext.ex",
+    "lib/assignment/release.ex"
+  ],
+  "coverage_options": {
+    "treat_no_relevant_lines_as_covered": true,
+    "minimum_coverage": 90
+  }
+}

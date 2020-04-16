@@ -10,7 +10,18 @@ defmodule Assignment.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        vcr: :test,
+        "vcr.delete": :test,
+        "vcr.check": :test,
+        "vcr.show": :test,
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -42,8 +53,11 @@ defmodule Assignment.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:absinthe_phoenix, "~> 1.4.0"},
       {:tesla, "~> 1.3"},
+      {:hackney, "~> 1.15.2"},
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
-      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
+      {:exvcr, "~> 0.11", only: :test},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 

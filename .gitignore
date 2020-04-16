@@ -29,3 +29,5 @@ assignment-*.tar
 
 # Ignores the folder used by ElixirLS extension.
 /.elixir_ls/
+
+/cover/
