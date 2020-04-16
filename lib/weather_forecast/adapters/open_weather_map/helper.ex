@@ -1,4 +1,4 @@
-defmodule WeatherForecast.Adapters.OpenWeatherMapHelper do
+defmodule WeatherForecast.Adapters.OpenWeatherMap.Helper do
   @moduledoc """
   Functions for using features specific to OpenWeatherMap
   (e.g. requesting, formating).

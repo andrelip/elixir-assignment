@@ -6,7 +6,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   """
 
   alias WeatherForecast.Adapters.OpenWeatherMap.DailyParser
-  alias WeatherForecast.Adapters.OpenWeatherMapHelper
+  alias WeatherForecast.Adapters.OpenWeatherMap.Helper, as: OpenWeatherMapHelper
 
   def get(lat, lon, cnt) do
     with {:ok, weather_data} <- fetch(lat, lon) do
