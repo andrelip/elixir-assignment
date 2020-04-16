@@ -26,12 +26,6 @@ defmodule AssignmentWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Assignment.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Assignment.Repo, {:shared, self()})
-    end
-
     :ok
   end
 end

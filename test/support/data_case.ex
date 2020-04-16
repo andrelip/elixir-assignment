@@ -18,8 +18,6 @@ defmodule Assignment.DataCase do
 
   using do
     quote do
-      alias Assignment.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
@@ -28,12 +26,6 @@ defmodule Assignment.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Assignment.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Assignment.Repo, {:shared, self()})
-    end
-
     :ok
   end
 

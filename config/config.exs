@@ -7,9 +7,6 @@
 # General application configuration
 use Mix.Config
 
-config :assignment,
-  ecto_repos: [Assignment.Repo]
-
 # Configures the endpoint
 config :assignment, AssignmentWeb.Endpoint,
   url: [host: "localhost"],
