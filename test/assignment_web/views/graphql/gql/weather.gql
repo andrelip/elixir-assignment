@@ -5,7 +5,7 @@ query WeatherForecast($input: CoordinateInput!) {
     sunset
     temperature
     feelsLike
-    weather {
+    weatherConditions {
       main
       description
     }

@@ -18,11 +18,11 @@ defmodule AssignmentWeb.GraphQL.WeatherTypes do
     field :sunset, :string
     field :temperature, :string
     field :feels_like, :string
-    field :weather, list_of(:weather)
+    field :weather_conditions, list_of(:weather_conditions)
     field :daily, list_of(:daily)
   end
 
-  object :weather do
+  object :weather_conditions do
     field :main, :string
     field :description, :string
   end

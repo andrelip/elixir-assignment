@@ -11,7 +11,7 @@ defmodule Assignment.WeatherForecastTest do
     assert data.sunrise == 1_587_011_988
     assert data.sunset == 1_587_062_405
     assert data.temperature == 292.59
-    assert data.weather == [%{description: "few clouds", main: "Clouds"}]
+    assert data.weather_conditions == [%{description: "few clouds", main: "Clouds"}]
 
     day = data.daily |> List.first()
 

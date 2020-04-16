@@ -41,7 +41,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
     current_weather["feels_like"]
   end
 
-  defp weathers(current_weather) do
+  defp weather_conditions(current_weather) do
     current_weather
     |> Map.get("weather")
     |> Enum.map(&parse_weather/1)
@@ -67,7 +67,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
       sunset: sunset(current),
       temperature: temperature(current),
       feels_like: feels_like(current),
-      weather: weathers(current),
+      weather_conditions: weather_conditions(current),
       daily: DailyParser.format(forecast)
     }
   end
