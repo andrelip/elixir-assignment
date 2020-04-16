@@ -9,27 +9,13 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   alias WeatherForecast.Adapters.OpenWeatherMapHelper
 
   def get(lat, lon, cnt) do
-    current_task = Task.async(fn -> current_weather(lat, lon) end)
-    forecast_task = Task.async(fn -> forecast_weather(lat, lon, cnt) end)
-
-    task_result =
-      Enum.map([current_task, forecast_task], fn task -> Task.await(task, 145_000) end)
-
-    case task_result do
-      [{:ok, current_weather_data}, {:ok, forecast_weather_data}] ->
-        {:ok, format(current_weather_data, forecast_weather_data)}
-
-      _ ->
-        {:error, "Error while requesting Open Weather Map's API"}
+    with {:ok, weather_data} <- fetch(lat, lon) do
+      {:ok, format(weather_data)}
     end
   end
 
-  def current_weather(lat, lon) do
-    OpenWeatherMapHelper.fetch_current_weather(config(), lat, lon)
-  end
-
-  def forecast_weather(lat, lon, cnt) do
-    OpenWeatherMapHelper.fetch_forecast_weather(config(), lat, lon, cnt)
+  defp fetch(lat, lon) do
+    OpenWeatherMapHelper.fetch_weather(config(), lat, lon)
   end
 
   defp date(current_weather) do
@@ -40,19 +26,19 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   end
 
   defp sunrise(current_weather) do
-    get_in(current_weather, ["sys", "sunrise"])
+    current_weather["sunrise"]
   end
 
   defp sunset(current_weather) do
-    get_in(current_weather, ["sys", "sunset"])
+    current_weather["sunset"]
   end
 
   defp temperature(current_weather) do
-    get_in(current_weather, ["main", "temp"])
+    current_weather["temp"]
   end
 
   defp feels_like(current_weather) do
-    get_in(current_weather, ["main", "feels_like"])
+    current_weather["feels_like"]
   end
 
   defp weathers(current_weather) do
@@ -71,15 +57,18 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
     }
   end
 
-  def format(current_weather_data, daily_data) do
+  defp format(weather_info) do
+    current = weather_info["current"]
+    forecast = weather_info["daily"]
+
     %{
-      date: date(current_weather_data),
-      sunrise: sunrise(current_weather_data),
-      sunset: sunset(current_weather_data),
-      temperature: temperature(current_weather_data),
-      feels_like: feels_like(current_weather_data),
-      weather: weathers(current_weather_data),
-      daily: DailyParser.format(daily_data)
+      date: date(current),
+      sunrise: sunrise(current),
+      sunset: sunset(current),
+      temperature: temperature(current),
+      feels_like: feels_like(current),
+      weather: weathers(current),
+      daily: DailyParser.format(forecast)
     }
   end
 

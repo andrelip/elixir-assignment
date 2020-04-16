@@ -1,7 +1,7 @@
 defmodule WeatherForecast.Adapters.OpenWeatherMap.DailyParser do
   @moduledoc false
   def format(forecast_weather) do
-    forecast_weather["list"]
+    forecast_weather
     |> Enum.map(&parse_day/1)
   end
 
