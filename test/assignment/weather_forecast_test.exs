@@ -1,5 +1,5 @@
 defmodule Assignment.WeatherForecastTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias Assignment.WeatherForecast
 

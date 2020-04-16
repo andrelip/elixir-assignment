@@ -1,9 +1,10 @@
 defmodule WeatherForecast.Adapters.OpenWeatherMapTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
   alias WeatherForecast.Adapters.OpenWeatherMap
 
+  @tag slow: true, vcr: true
   test "get/2 should fetch formatted data from Open Weather API" do
     use_cassette "Open Weather API - OPEN API" do
       {:ok, data} = OpenWeatherMap.get("52.3667", "4.8945")

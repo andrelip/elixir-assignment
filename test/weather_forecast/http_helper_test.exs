@@ -1,5 +1,5 @@
 defmodule WeatherForecast.Adapters.HTTPHelperTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   use ExVCR.Mock, adapter: ExVCR.Adapter.Hackney
 
   import ExUnit.CaptureLog
@@ -7,12 +7,14 @@ defmodule WeatherForecast.Adapters.HTTPHelperTest do
   alias WeatherForecast.Adapters.HTTPHelper
   alias WeatherForecast.Adapters.OpenWeatherMap
 
+  @tag slow: true, vcr: true
   test "Should be OK for status code 200" do
     use_cassette "WeatherForecast.Adapters.HTTPHelperTest - Sucessful Scenario" do
       {:ok, _data} = OpenWeatherMap.get("52.3667", "4.8945")
     end
   end
 
+  @tag slow: true, vcr: true
   test "Should log and return error for statuses different than 200" do
     use_cassette "WeatherForecast.Adapters.HTTPHelperTest - different than 200" do
       url = "https://api.openweathermap.org/data/2.5/onecall"
