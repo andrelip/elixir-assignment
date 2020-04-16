@@ -25,10 +25,6 @@ defmodule Assignment.DataCase do
     end
   end
 
-  setup tags do
-    :ok
-  end
-
   @doc """
   A helper that transforms changeset errors into a map of messages.
 

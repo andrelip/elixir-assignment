@@ -5,7 +5,6 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap.Helper do
   """
 
   alias WeatherForecast.Adapters.HTTPHelper
-  alias WeatherForecast.Adapters.OpenWeatherMap.DailyMock
 
   @base_uri "https://api.openweathermap.org/data/2.5"
 

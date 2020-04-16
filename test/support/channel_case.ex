@@ -24,8 +24,4 @@ defmodule AssignmentWeb.ChannelCase do
       @endpoint AssignmentWeb.Endpoint
     end
   end
-
-  setup tags do
-    :ok
-  end
 end

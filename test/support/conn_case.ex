@@ -27,8 +27,4 @@ defmodule AssignmentWeb.ConnCase do
       @endpoint AssignmentWeb.Endpoint
     end
   end
-
-  setup tags do
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
-  end
 end
