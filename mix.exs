@@ -57,7 +57,8 @@ defmodule Assignment.MixProject do
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:exvcr, "~> 0.11", only: :test},
-      {:excoveralls, "~> 0.10", only: :test}
+      {:excoveralls, "~> 0.10", only: :test},
+      {:wormwood, "~> 0.1.0"}
     ]
   end
 
