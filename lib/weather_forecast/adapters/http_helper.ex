@@ -5,6 +5,7 @@ defmodule WeatherForecast.Adapters.HTTPHelper do
   """
   require Logger
 
+  @doc false
   def get(uri, query) do
     res = Tesla.get(uri, query: query)
 
