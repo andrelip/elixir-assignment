@@ -12,6 +12,6 @@ defmodule AssignmentWeb.Router do
       schema: AssignmentWeb.GraphQL.WeatherForecastSchema,
       interface: :playground
 
-    forward "/graphql", Absinthe.Plug, schema: BankingWeb.GraphQL.Schema
+    forward "/graphql", Absinthe.Plug, schema: AssignmentWeb.GraphQL.Schema
   end
 end
