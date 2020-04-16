@@ -73,7 +73,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   end
 
   defp config do
-    env = Application.get_env(:weather_forecast, WeatherForecast)
+    env = Application.get_env(:assignment, WeatherForecast)
     %{api_key: env[:api_key]}
   end
 end

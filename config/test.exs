@@ -9,7 +9,7 @@ config :assignment, AssignmentWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-config :weather_forecast, WeatherForecast,
+config :assignment, WeatherForecast,
   adapter: WeatherForecast.Adapters.Test,
   api_key:
     System.get_env("OPENWEATHERMAP_APIKEY") ||

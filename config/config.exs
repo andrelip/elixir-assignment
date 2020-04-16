@@ -22,7 +22,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :weather_forecast, WeatherForecast, adapter: WeatherForecast.Adapters.OpenWeatherMap
+config :assignment, WeatherForecast, adapter: WeatherForecast.Adapters.OpenWeatherMap
 
 config :tesla, adapter: Tesla.Adapter.Hackney
 

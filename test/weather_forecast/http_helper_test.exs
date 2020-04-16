@@ -9,7 +9,7 @@ defmodule WeatherForecast.Adapters.HTTPHelperTest do
 
   test "Should be OK for status code 200" do
     use_cassette "WeatherForecast.Adapters.HTTPHelperTest - Sucessful Scenario" do
-      {:ok, data} = OpenWeatherMap.get("52.3667", "4.8945")
+      {:ok, _data} = OpenWeatherMap.get("52.3667", "4.8945")
     end
   end
 
@@ -31,6 +31,7 @@ defmodule WeatherForecast.Adapters.HTTPHelperTest do
       assert logged_msg =~
                "Invalid API key. Please see http://openweathermap.org/faq#error401 for more info."
 
+      Logger.remove_backend(:console)
       assert {:error, _} = HTTPHelper.get(url, params)
     end
   end
@@ -46,6 +47,7 @@ defmodule WeatherForecast.Adapters.HTTPHelperTest do
       assert logged_msg =~ "Params: %{}"
       assert logged_msg =~ "Error: {:error, \"nxdomain\"}"
 
+      Logger.remove_backend(:console)
       assert {:error, _} = HTTPHelper.get(url, params)
     end
   end

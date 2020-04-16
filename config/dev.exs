@@ -47,7 +47,7 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :weather_forecast, WeatherForecast,
+config :assignment, WeatherForecast,
   api_key:
     System.get_env("OPENWEATHERMAP_APIKEY") ||
       raise("""
