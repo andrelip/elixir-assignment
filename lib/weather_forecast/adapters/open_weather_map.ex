@@ -78,13 +78,23 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   end
 
   defp parse_weather(weather) do
-    main = weather["main"]
+    main = weather["main"] |> parse_main
     description = weather["description"]
 
     %WeatherCondition{
       main: main,
       description: description
     }
+  end
+
+  defp parse_main(main) do
+    main_atom = main |> String.downcase() |> String.to_existing_atom()
+    main_values = WeatherCondition.main_values()
+
+    case Enum.member?(main_values, main_atom) do
+      true -> main_atom
+      false -> raise "Invalid value for main"
+    end
   end
 
   defp format(weather_info) do

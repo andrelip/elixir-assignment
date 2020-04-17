@@ -27,7 +27,7 @@ defmodule AssignmentWeb.GraphQL.Query.WeatherTest do
     assert weather_info["temperature"] == 292.59
 
     assert weather_info["weatherConditions"] == [
-             %{"description" => "few clouds", "main" => "Clouds"}
+             %{"description" => "few clouds", "main" => "CLOUDS"}
            ]
 
     day = weather_info["daily"] |> List.first()

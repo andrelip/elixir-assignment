@@ -170,7 +170,7 @@ defmodule WeatherForecast.Adapters.Test do
        sunrise: 1_587_011_988,
        sunset: 1_587_062_405,
        temperature: 292.59,
-       weather_conditions: [%WeatherCondition{description: "few clouds", main: "Clouds"}]
+       weather_conditions: [%WeatherCondition{description: "few clouds", main: :clouds}]
      }}
   end
 end

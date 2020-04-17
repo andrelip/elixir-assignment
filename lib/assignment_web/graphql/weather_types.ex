@@ -34,8 +34,7 @@ defmodule AssignmentWeb.GraphQL.WeatherTypes do
   end
 
   object :weather_conditions do
-    field :main, :string, description: "Group of weather parameters (Rain, Snow, Extreme etc.)"
-
+    field :main, :weather_main, description: "Group of weather parameters (Rain, Snow, Extreme etc.)"
     field :description, :string, description: "Weather condition within the group"
   end
 
@@ -48,7 +47,7 @@ defmodule AssignmentWeb.GraphQL.WeatherTypes do
   end
 
   object :daily_feels_like do
-    field :day, :temperature, description: "Day temperature"
+    field :day, :temperature
     field :night, :temperature
     field :evening, :temperature
     field :morning, :temperature
@@ -62,4 +61,6 @@ defmodule AssignmentWeb.GraphQL.WeatherTypes do
     field :evening, :temperature
     field :morning, :temperature
   end
+
+  enum :weather_main, values: [:thunderstorm, :drizzle, :clouds]
 end
