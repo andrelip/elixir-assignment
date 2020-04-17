@@ -2,7 +2,12 @@ defmodule WeatherForecast do
   @moduledoc """
   This module contains functions to fetch weather information
   """
+  alias WeatherForecast.Structs.WeatherInformation
+
   @adapter Application.get_env(:assignment, WeatherForecast)[:adapter]
+
+  @type lat :: String.t
+  @type lon :: String.t
 
   @doc """
   Receives a geo-position and returns detailed weather data for today and the
@@ -31,6 +36,7 @@ defmodule WeatherForecast do
         weather_conditions: [%{description: "broken clouds", main: "Clouds"}]
       }}
   """
+  @spec get(lat, lon)  :: {:ok, %WeatherInformation{}} | {:error, String.t}
   def get(lat, lon) do
     @adapter.get(lat, lon)
   end

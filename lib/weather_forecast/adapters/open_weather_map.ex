@@ -4,6 +4,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
 
   Requires an API key in the config.
   """
+  @behaviour WeatherForecast.Adapter
 
   alias WeatherForecast.Adapters.OpenWeatherMap.DailyParser
   alias WeatherForecast.Adapters.OpenWeatherMap.Helper, as: OpenWeatherMapHelper
@@ -38,6 +39,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
         weather_conditions: [%{description: "broken clouds", main: "Clouds"}]
       }}
   """
+  @spec get(WeatherForecast.lat, WeatherForecast.lon) :: {:ok, %WeatherInformation{}} | {:error, String.t}
   def get(lat, lon) do
     with {:ok, weather_data} <- fetch(lat, lon) do
       {:ok, format(weather_data)}

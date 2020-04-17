@@ -5,7 +5,10 @@ defmodule WeatherForecast.Adapters.HTTPHelper do
   """
   require Logger
 
+  alias WeatherForecast.Structs.WeatherInformation
+
   @doc false
+  @spec get(String.t(), Map.t()) :: {:ok, %WeatherInformation{}} | {:error, String.t()}
   def get(uri, query) do
     res = Tesla.get(uri, query: query)
 

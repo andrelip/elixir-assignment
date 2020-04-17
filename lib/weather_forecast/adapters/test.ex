@@ -2,12 +2,15 @@ defmodule WeatherForecast.Adapters.Test do
   @moduledoc """
   Used for mocking a client for the WeatherForecast
   """
+  @behaviour WeatherForecast.Adapter
 
   alias WeatherForecast.Structs.WeatherInformation
   alias WeatherForecast.Structs.DailyInformation
   alias WeatherForecast.Structs.DailyFeelsLike
   alias WeatherForecast.Structs.DailyTemperature
   alias WeatherForecast.Structs.WeatherCondition
+
+  @spec get(WeatherForecast.lat, WeatherForecast.lon) :: {:ok, %WeatherInformation{}} | {:error, String.t}
   def get(_lat, _lon) do
     {:ok,
      %WeatherInformation{
