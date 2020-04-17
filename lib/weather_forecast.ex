@@ -1,6 +1,6 @@
 defmodule WeatherForecast do
   @moduledoc """
-  Pending
+  This module contains functions to fetch weather information
   """
   @adapter Application.get_env(:assignment, WeatherForecast)[:adapter]
 

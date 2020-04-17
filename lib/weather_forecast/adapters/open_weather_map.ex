@@ -7,6 +7,9 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
 
   alias WeatherForecast.Adapters.OpenWeatherMap.DailyParser
   alias WeatherForecast.Adapters.OpenWeatherMap.Helper, as: OpenWeatherMapHelper
+  alias WeatherForecast.Structs.WeatherInformation
+  alias WeatherForecast.Structs.WeatherCondition
+
 
   @doc """
   Receives a geo-position and returns detailed weather data for today and the
@@ -78,7 +81,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
     main = weather["main"]
     description = weather["description"]
 
-    %{
+    %WeatherCondition{
       main: main,
       description: description
     }
@@ -88,7 +91,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
     current = weather_info["current"]
     forecast = weather_info["daily"]
 
-    %{
+    %WeatherInformation{
       date: date(current),
       sunrise: sunrise(current),
       sunset: sunset(current),

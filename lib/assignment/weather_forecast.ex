@@ -1,6 +1,6 @@
 defmodule Assignment.WeatherForecast do
   @moduledoc """
-  This module contains functions to fetch Weather Information
+  This module contains functions to fetch weather information
   """
 
   @doc """

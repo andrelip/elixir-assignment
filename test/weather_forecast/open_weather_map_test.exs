@@ -4,6 +4,10 @@ defmodule WeatherForecast.Adapters.OpenWeatherMapTest do
 
   alias WeatherForecast.Adapters.OpenWeatherMap
 
+  alias WeatherForecast.Structs.DailyFeelsLike
+  alias WeatherForecast.Structs.DailyTemperature
+  alias WeatherForecast.Structs.WeatherCondition
+
   @tag slow: true, vcr: true
   test "get/2 should fetch formatted data from Open Weather API" do
     use_cassette "Open Weather API - OPEN API" do
@@ -14,16 +18,16 @@ defmodule WeatherForecast.Adapters.OpenWeatherMapTest do
       assert data.sunrise == 1_587_011_988
       assert data.sunset == 1_587_062_405
       assert data.temperature == 292.67
-      assert data.weather_conditions == [%{description: "few clouds", main: "Clouds"}]
+      assert data.weather_conditions == [%WeatherCondition{description: "few clouds", main: "Clouds"}]
 
       day = data.daily |> List.first()
 
       assert day.date == "2020-04-16"
-      assert day.feels_like == %{day: 289.74, evening: 284.04, morning: 289.74, night: 277.79}
+      assert day.feels_like == %DailyFeelsLike{day: 289.74, evening: 284.04, morning: 289.74, night: 277.79}
       assert day.humidity == 42
       assert day.pressure == 1016
 
-      assert day.temperature == %{
+      assert day.temperature == %DailyTemperature{
                day: 292.67,
                evening: 287.45,
                max: 292.67,

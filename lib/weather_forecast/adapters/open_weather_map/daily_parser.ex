@@ -1,4 +1,7 @@
 defmodule WeatherForecast.Adapters.OpenWeatherMap.DailyParser do
+  alias WeatherForecast.Structs.DailyInformation
+  alias WeatherForecast.Structs.DailyFeelsLike
+  alias WeatherForecast.Structs.DailyTemperature
   @moduledoc false
   def format(forecast_weather) do
     forecast_weather
@@ -6,7 +9,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap.DailyParser do
   end
 
   defp parse_day(day) do
-    %{
+    %DailyInformation{
       date: date(day),
       pressure: pressure(day),
       humidity: humidity(day),
@@ -33,7 +36,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap.DailyParser do
   defp temperature(day) do
     temp = day["temp"]
 
-    %{
+    %DailyTemperature{
       day: temp["day"],
       evening: temp["eve"],
       max: temp["max"],
@@ -46,7 +49,7 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap.DailyParser do
   defp feels_like(day) do
     feels_like = day["feels_like"]
 
-    %{
+    %DailyFeelsLike{
       day: feels_like["day"],
       night: feels_like["night"],
       evening: feels_like["eve"],

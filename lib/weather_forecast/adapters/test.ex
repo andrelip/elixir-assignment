@@ -3,13 +3,18 @@ defmodule WeatherForecast.Adapters.Test do
   Used for mocking a client for the WeatherForecast
   """
 
+  alias WeatherForecast.Structs.WeatherInformation
+  alias WeatherForecast.Structs.DailyInformation
+  alias WeatherForecast.Structs.DailyFeelsLike
+  alias WeatherForecast.Structs.DailyTemperature
+  alias WeatherForecast.Structs.WeatherCondition
   def get(_lat, _lon) do
     {:ok,
-     %{
+     %WeatherInformation{
        daily: [
-         %{
+         %DailyInformation{
            date: "2020-04-16",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 289.87,
              evening: 284.01,
              morning: 289.87,
@@ -17,7 +22,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 45,
            pressure: 1016,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 292.59,
              evening: 287.43,
              max: 292.59,
@@ -26,9 +31,9 @@ defmodule WeatherForecast.Adapters.Test do
              night: 281.96
            }
          },
-         %{
+         %DailyInformation{
            date: "2020-04-17",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 282.93,
              evening: 280.53,
              morning: 275.75,
@@ -36,7 +41,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 51,
            pressure: 1019,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 287.62,
              evening: 284.94,
              max: 288.29,
@@ -45,9 +50,9 @@ defmodule WeatherForecast.Adapters.Test do
              night: 280.17
            }
          },
-         %{
+         %DailyInformation{
            date: "2020-04-18",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 281.89,
              evening: 283.06,
              morning: 276.51,
@@ -55,7 +60,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 65,
            pressure: 1017,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 284.56,
              evening: 285.64,
              max: 285.87,
@@ -64,9 +69,9 @@ defmodule WeatherForecast.Adapters.Test do
              night: 283.74
            }
          },
-         %{
+         %DailyInformation{
            date: "2020-04-19",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 285.19,
              evening: 282.18,
              morning: 277.07,
@@ -74,7 +79,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 47,
            pressure: 1020,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 290.21,
              evening: 287.48,
              max: 290.86,
@@ -83,9 +88,9 @@ defmodule WeatherForecast.Adapters.Test do
              night: 283.19
            }
          },
-         %{
+         %DailyInformation{
            date: "2020-04-20",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 280.46,
              evening: 278.81,
              morning: 273.65,
@@ -93,7 +98,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 37,
            pressure: 1021,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 288.35,
              evening: 286.01,
              max: 289.11,
@@ -102,9 +107,9 @@ defmodule WeatherForecast.Adapters.Test do
              night: 282.78
            }
          },
-         %{
+         %DailyInformation{
            date: "2020-04-21",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 281.17,
              evening: 280.61,
              morning: 273.75,
@@ -112,7 +117,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 39,
            pressure: 1021,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 288.74,
              evening: 286.93,
              max: 289.84,
@@ -121,9 +126,9 @@ defmodule WeatherForecast.Adapters.Test do
              night: 282.7
            }
          },
-         %{
+         %DailyInformation{
            date: "2020-04-22",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 283.44,
              evening: 283.85,
              morning: 275.21,
@@ -131,7 +136,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 40,
            pressure: 1018,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 289.37,
              evening: 287.89,
              max: 290.77,
@@ -140,9 +145,9 @@ defmodule WeatherForecast.Adapters.Test do
              night: 282.14
            }
          },
-         %{
+         %DailyInformation{
            date: "2020-04-23",
-           feels_like: %{
+           feels_like: %DailyFeelsLike{
              day: 289.29,
              evening: 282.94,
              morning: 279.57,
@@ -150,7 +155,7 @@ defmodule WeatherForecast.Adapters.Test do
            },
            humidity: 50,
            pressure: 1010,
-           temperature: %{
+           temperature: %DailyTemperature{
              day: 290.5,
              evening: 285.77,
              max: 290.5,
@@ -165,7 +170,7 @@ defmodule WeatherForecast.Adapters.Test do
        sunrise: 1_587_011_988,
        sunset: 1_587_062_405,
        temperature: 292.59,
-       weather_conditions: [%{description: "few clouds", main: "Clouds"}]
+       weather_conditions: [%WeatherCondition{description: "few clouds", main: "Clouds"}]
      }}
   end
 end
