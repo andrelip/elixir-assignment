@@ -62,5 +62,6 @@ defmodule AssignmentWeb.GraphQL.WeatherTypes do
     field :morning, :temperature
   end
 
-  enum :weather_main, values: [:thunderstorm, :drizzle, :clouds]
+  enum :weather_main, values: [:thunderstorm, :drizzle, :rain, :snow, :mist,
+    :smoke, :haze, :dust, :fog, :sand, :dust, :ash, :squall, :tornado, :clear, :clouds]
 end
