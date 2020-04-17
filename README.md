@@ -2,8 +2,6 @@
 - Set the environment variable `OPENWEATHERMAP_APIKEY` with your API key.
 - Request `/graphql` or navigate through the API using GraphiQL in `/graphiql`
 
-If your OpenWeatherMap account doesn't support the forecast feature, you can simulate a response using by using `mock_forecast: true` in the configuration.
-
 ## Setup
 
 - [Phoenix](https://phoenixframework.org) has been set up and is available to run the application server.\
@@ -35,7 +33,7 @@ query WeatherForecast($input: CoordinateInput!) {
     sunset
     temperature
     feelsLike
-    weather {
+    weatherConditions {
       main
       description
     }
