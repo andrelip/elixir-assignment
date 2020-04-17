@@ -90,12 +90,16 @@ defmodule WeatherForecast.Adapters.OpenWeatherMap do
   end
 
   defp parse_main(main) do
-    main_atom = main |> String.downcase() |> String.to_existing_atom()
-    main_values = WeatherCondition.main_values()
+    try do
+      main_atom = main |> String.downcase() |> String.to_existing_atom()
+      main_values = WeatherCondition.main_values()
 
-    case Enum.member?(main_values, main_atom) do
-      true -> main_atom
-      false -> raise "Invalid value for main"
+      case Enum.member?(main_values, main_atom) do
+        true -> main_atom
+        false -> raise ArgumentError
+      end
+    rescue
+      ArgumentError -> raise "Invalid value for main: #{main}"
     end
   end
 

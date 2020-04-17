@@ -37,4 +37,12 @@ defmodule WeatherForecast.Adapters.OpenWeatherMapTest do
              }
     end
   end
+
+  test "missing values for main" do
+    use_cassette "Open Weather API - wrong value for main" do
+      assert_raise RuntimeError, "Invalid value for main: notallowedmain", fn ->
+        OpenWeatherMap.get("52.3667", "4.8945")
+      end
+    end
+  end
 end
